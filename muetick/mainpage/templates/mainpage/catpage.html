@@ -8,7 +8,6 @@
         <title>Dashboard - Muetick</title>
 
         <link href="{% static 'mainpage/cat_styles.css' %}" rel="stylesheet">
-  
     </head>
 
     <body>
@@ -16,7 +15,7 @@
         <!--this header is just for reference-->
         <header class="header">
             <div class="header-container">
-                <img src="{% static 'mainpage/logo.png' %}" alt="Logo" class="logo">
+                <img src="{% static 'mainpage/logo.jpg' %}" alt="Logo" class="logo">
                 <nav>
                   <ul>
                     <li><a href="dashboard.html">Home</a></li>
@@ -43,14 +42,20 @@
 
         <div class = "content" style = "opacity: 0.6;">
           <div class = "checkout">
-            <h1>Price</h1>
-            <button>
-              <h3> Pay </h3>
-            </button>
+            
+            <form method="POST" action="#">
+              {% csrf_token %}
+              <h1>{{price}}</h1>
+              <input hidden style="margin-bottom:10px;" type="text" placeholder="Enter Number of tickets." name="price" value="{{price}}"></input>
+              <input style="margin-bottom:10px;" type="text" placeholder="Enter Number of tickets." name="ticketcount"></input>
+              <button>
+                <h3>Pay</h3>
+              </button>
+            </form>
           </div>
 
           <div class="ticket">
-            <p>museum name - ticket</p>
+            <p>{{m_name}} - ticket</p>
             <div class="ticket-controls">
                 <button class="decrease-btn">-</button>
                 <span class="ticket-count">1</span>

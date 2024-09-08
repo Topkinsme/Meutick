@@ -36,19 +36,15 @@
                 <div class="grid grid-cols-2 gap-6 mb-8">
                     <div>
                         <p class="font-semibold">Name:</p>
-                        <p>Meutick</p>
+                        <p>{{name}}</p>
                     </div>
                     <div>
                         <p class="font-semibold">Email:</p>
-                        <p>meutick_not_found@gmail.com</p>
+                        <p>{{email}}</p>
                     </div>
                     <div>
                         <p class="font-semibold">Phone:</p>
-                        <p>+123 456 7890</p>
-                    </div>
-                    <div>
-                        <p class="font-semibold">Address:</p>
-                        <p>123 Street Name, City, Country</p>
+                        <p>{{phno}}</p>
                     </div>
                 </div>
 
@@ -64,17 +60,20 @@
                             <th class="p-3">Actions</th>
                         </tr>
                     </thead>
+                    
                     <tbody class="text-white">
+                        {% for x in trxns %}
                         <tr class="bg-[#6d171f]/[0.69] hover:bg-[#6d171f]/[0.8]">
-                            <td class="p-3 text-center">TXN123456</td>
-                            <td class="p-3 text-center">The Louvre</td>
+                            <td class="p-3 text-center">{{x.tic_id}}</td>
+                            <td class="p-3 text-center">{{x.catname.name}}</td>
                             <td class="p-3 text-center">2024-09-01</td>
-                            <td class="p-3 text-center">$100</td>
+                            <td class="p-3 text-center">{% widthratio x.count 1 x.catname.price %}</td>
                             <td class="p-3 text-center">Completed</td>
                             <td class="p-3 text-center">
                                 <button onclick="downloadReceipt('TXN123456')" class="bg-white bg-opacity-25 text-slate-900 px-2 py-1 rounded-lg hover:bg-opacity-50 text-sm">Download Receipt</button>
                             </td>
                         </tr>
+                        {% endfor %}
                         <!-- Add more rows as needed -->
                     </tbody>
                 </table>

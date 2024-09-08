@@ -43,11 +43,14 @@
     <div class="form-card sm:mx-auto sm:w-full sm:max-w-sm">
       <div class="flex justify-center">
         <!-- Logo image -->
-        <img src="{% static 'mainpage/logo.png' %}" alt="Logo" class="logo">
+        <img src="{% static 'mainpage/logo.jpg' %}" alt="Logo" class="logo">
       </div>
       <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
-
+      {% if error %}
+      <div id="alertBox" class=" bg-[#f8d7da] p-10 border-5 rounded-xl my-15 alert-box text-[#721c24] ">{{error}}</div>
+      {% endif %}
       <form class="space-y-6 mt-10" action="#" method="POST">
+        {% csrf_token %}
         <div>
           <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
           <div class="mt-2">

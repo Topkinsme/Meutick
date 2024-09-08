@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'tailwind',
     'theme',
     'django_browser_reload',
-    'mainpage',
+    'mainpage.apps.MainpageConfig',
 ]
 STATIC_URL = "static/"
 TAILWIND_APP_NAME = 'theme'

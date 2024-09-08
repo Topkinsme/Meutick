@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import Customer,AdminUser,Ticket,Categories
 
-# Register your models here.
+admin.site.register(Customer)
+admin.site.register(AdminUser)
+admin.site.register(Ticket)
+admin.site.register(Categories)

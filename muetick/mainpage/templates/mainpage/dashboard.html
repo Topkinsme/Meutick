@@ -16,7 +16,7 @@
         <!--this header is just for reference-->
         <header class="header">
             <div class="header-container">
-                <img src="{% static 'mainpage/logo.png' %}" alt="Logo" class="logo">
+                <img src="{% static 'mainpage/logo.jpg' %}" alt="Logo" class="logo">
                 <nav>
                   <ul>
                     <li><a href="dashboard.html">Home</a></li>
@@ -43,7 +43,7 @@
 
             <div class="categories">
               <div class="category1">
-                <a href="catpage.html">
+                <a href="{% url 'catpage' 'eg1' %}">
                   <img src="{% static 'mainpage/Egyptian_Gallery_View2.jpg' %}" alt="Category 1">
                   <p class="caption">Egyptian Gallery</p>
                 </a>
@@ -51,7 +51,7 @@
               </div>
           
               <div class="category1">
-                <a href="catpage.html">
+                <a href="{% url 'catpage' 'gg1' %}">
                   <img src="{% static 'mainpage/Gandhara_Gallery_View1.jpg' %}" alt="Category 2">
                   <p class="caption">Gandhara Gallery</p>
                 </a>
@@ -59,15 +59,14 @@
               </div>
 
               <div class="category1">
-                <a href="catpage.html">
+                <a href="{% url 'catpage' 'lag1' %}">
                   <img src="{% static 'mainpage/LongArchaeology_Gallery_View1.jpg' %}" alt="Category 3">
                   <p class="caption">Long Archaeology Gallery</p>
                 </a>
-                
               </div>
 
               <div class="category1">
-                <a href="catpage.html">
+                <a href="{% url 'catpage' 'mag1' %}">
                   <img src="{% static 'mainpage/This-Minor_Art_GalleryView2.jpg' %}" alt="Category 3">
                   <p class="caption">This Minor Art Gallery</p>
                 </a>
@@ -75,7 +74,7 @@
               </div>
 
               <div class="category1">
-                <a href="catpage.html">
+                <a href="{% url 'catpage' 'vf1' %}">
                   <img src="{% static 'mainpage/Varanda_1st_floor.jpg' %}" alt="Category 3">
                   <p class="caption">Varanda 1st Floor</p> 
                 </a>
