@@ -1,33 +1,15 @@
+{% extends "mainpage/base.html" %}
 {% load static %}
 {% load static tailwind_tags %}
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Dashboard - Muetick</title>
+
+{% block title %}
+    Sign Up
+{% endblock %}
+{% tailwind_css %}
+
+{% block content %}
 
         <link href="{% static 'mainpage/cat_styles.css' %}" rel="stylesheet">
-  
-    </head>
-
-    <body>
-
-        <!--this header is just for reference-->
-        <header class="header">
-            <div class="header-container">
-                <img src="{% static 'mainpage/logo.png' %}" alt="Logo" class="logo">
-                <nav>
-                  <ul>
-                    <li><a href="dashboard.html">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Profile</a></li>
-                  </ul>
-                </nav>
-            </div>
-        </header>
-          <!--this header is just for reference-->
 
         <div class="content">
             <div class="image">
@@ -59,15 +41,4 @@
         </div>
 
         </div>
-
-        
-
-          <!--this footer is just for reference-->
-          <footer class="footer">
-            <p>&copy; New Era - 2024 - SIH</p>
-          </footer>
-          <!--this header is just for reference-->
-        </main>
-
-    </body>
-</html>
+{% endblock %}

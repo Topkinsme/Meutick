@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact the devs.</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+{% extends "mainpage/base.html" %}
+{% load static %}
+{% load static tailwind_tags %}
+
+{% block title %}
+    Sign Up
+{% endblock %}
+{% tailwind_css %}
+
+{% block content %}
     <style>
         .raleway {
             font-family: "Raleway", sans-serif;
@@ -26,7 +26,7 @@
                 <br>
                 <div class="flex flex-col gap p-3 items-center justify-center h-full">
                     <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-slate-900 p-3 rounded-xl text-xl">
-                        Statictics
+                        Statistics
                     </button>
                     <br>
                     <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-slate-900 p-3 rounded-xl text-xl">
@@ -79,4 +79,4 @@
         </div>
     </div>
 </body>
-</html>
+{% endblock %}
