@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+{% extends "mainpage/base.html" %}
+{% load static %}
+{% load static tailwind_tags %}
+
+{% block title %}
+    Profile
+{% endblock %}
+{% tailwind_css %}
+
+{% block content %}
     <style>
         .raleway {
             font-family: "Raleway", sans-serif;
@@ -30,7 +30,7 @@
         </div>
 
         <!-- Main Content -->
-        <div class="flex-grow p-10">
+        <div class="flex-grow p-10 mb-4">
             <div class="bg-gradient-to-b from-[#1f2139]/[0.9] to-[#1f2139] text-white p-8 rounded-lg shadow-lg">
                 <h2 class="text-2xl font-bold mb-6">User Details</h2>
                 <div class="grid grid-cols-2 gap-6 mb-8">
@@ -135,7 +135,7 @@
         </div>
     </div>
 
-    <script>
+    <!-- <script>
         function downloadReceipt(transactionId) {
             const receiptContent = `
                 Transaction ID: ${transactionId}\n
@@ -185,6 +185,6 @@
             // Clear the form
             document.getElementById('feedback-form').reset();
         });
-    </script>
+    </script> -->
 </body>
-</html>
+{% endblock %}

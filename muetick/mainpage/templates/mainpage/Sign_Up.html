@@ -1,10 +1,13 @@
+{% extends "mainpage/base.html" %}
 {% load static %}
-<!doctype html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>
+{% load static tailwind_tags %}
+
+{% block title %}
+    Sign Up
+{% endblock %}
+{% tailwind_css %}
+
+{% block content %}
   <style>
     body {
       background: url("{% static 'mainpage/bg_image.jpg' %}") no-repeat center center fixed;
@@ -20,7 +23,7 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
     }
 
-    .logo {
+    .logo2 {
       height: 100px; 
       width: 100px; 
       object-fit: contain; 
@@ -57,11 +60,11 @@
   </style>
 </head>
 <body>
-  <div class="flex min-h-screen flex-col justify-center items-center px-6 py-8 lg:px-8 relative">
+  <div class="flex min-h-screen flex-col justify-center items-center px-6 py-12 lg:px-8 relative">
     <div class="form-card sm:mx-auto sm:w-full sm:max-w-sm">
       <div class="flex justify-center mb-6">
         <!-- Logo image -->
-        <img src="{% static 'mainpage/logo.png' %}" alt="Logo" class="logo">
+        <img src="{% static 'mainpage/favicon.jpg' %}" alt="Logo" class="logo2">
       </div>
       <h2 class="text-center font-bold leading-6 text-gray-900">Create your account</h2>
       <div id="alertBox" class="alert-box"></div>
@@ -112,69 +115,4 @@
       </form>
     </div>
   </div>
-
-  
-  <script>
-    document.getElementById("signUpForm").addEventListener("submit", function(event) {
-        event.preventDefault(); 
-        if (!validateForm()) {
-            return;
-        }
-        alert("Sign-up Successful!");
-    });
-
-    function validateForm() {
-        var name = document.getElementById('name').value.trim();
-        var email = document.getElementById('email').value.trim();
-        var mobile = document.getElementById('mobile').value.trim();
-        var password = document.getElementById('password').value.trim();
-        var confirmPassword = document.getElementById('confirm-password').value.trim();
-
-        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        var mobilePattern = /^\d{10,}$/; 
-        var errorMessage = '';
-
-        if (name === '') {
-            errorMessage += "Name is required.<br>";
-        }
-
-        if (email === '') {
-            errorMessage += "Email is required.<br>";
-        } else if (!emailPattern.test(email)) {
-            errorMessage += "Please enter a valid email address.<br>";
-        }
-
-        if (mobile === '') {
-            errorMessage += "Mobile number is required.<br>";
-        } else if (!mobilePattern.test(mobile)) {
-            errorMessage += "Please enter a valid mobile number (digits only, at least 10 digits).<br>";
-        }
-
-        if (password === '') {
-            errorMessage += "Password is required.<br>";
-        } else if (password.length < 7) {
-            errorMessage += "Password must be at least 7 characters long.<br>";
-        }
-
-        if (confirmPassword === '') {
-            errorMessage += "Confirm Password is required.<br>";
-        } else if (password !== confirmPassword) {
-            errorMessage += "Passwords do not match.<br>";
-        }
-
-        // Show error messages in the alert box
-        var alertBox = document.getElementById('alertBox');
-        if (errorMessage) {
-            alertBox.innerHTML = errorMessage;
-            alertBox.style.display = 'block'; 
-            return false;
-        } else {
-            alertBox.style.display = 'none'; 
-        }
-
-        return true;
-    }
-  </script>
-
-</body>
-</html>
+  {% endblock %}

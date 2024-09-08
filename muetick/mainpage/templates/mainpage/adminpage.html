@@ -1,15 +1,13 @@
+{% extends "mainpage/base.html" %}
 {% load static %}
 {% load static tailwind_tags %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Page</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+{% block title %}
+    Sign Up
+{% endblock %}
+{% tailwind_css %}
+
+{% block content %}
     <style>
         .raleway {
             font-family: "Raleway", sans-serif;
@@ -58,7 +56,7 @@
                     <p class="text-4xl font-bold">13</p>
                 </div>
                 <div class="col-start-1 col-span-6 border-4 rounded-xl m-1 bg-white bg-opacity-15 text-slate-300 p-3 flex flex-col justify-center items-center">
-                    <p class="text-1xl font-bold">Main Building Coung</p>
+                    <p class="text-1xl font-bold">Main Building Count</p>
                     <p class="text-4xl font-bold">220</p>
                 </div>
                 <div class="col-start-7 col-span-6 border-4 rounded-xl m-1 bg-white bg-opacity-15 text-slate-300  p-3 flex flex-col justify-center items-center">
@@ -81,4 +79,4 @@
         </div>
     </div>
 </body>
-</html>
+{% endblock %}

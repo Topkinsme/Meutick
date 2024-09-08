@@ -1,10 +1,13 @@
+{% extends "mainpage/base.html" %}
 {% load static %}
-<!doctype html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>
+{% load static tailwind_tags %}
+
+{% block title %}
+    Sign In
+{% endblock %}
+{% tailwind_css %}
+
+{% block content %}
   <style>
     body {
       background: url("{% static 'mainpage/bg_image.jpg' %}") no-repeat center center fixed;
@@ -20,7 +23,7 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
     }
 
-    .logo {
+    .logo2 {
       height: 100px; 
       width: 100px; 
       object-fit: contain;
@@ -37,13 +40,12 @@
       max-width: 200px; 
     }
   </style>
-</head>
 <body>
   <div class="flex min-h-screen flex-col justify-center items-center px-6 py-12 lg:px-8 relative">
     <div class="form-card sm:mx-auto sm:w-full sm:max-w-sm">
       <div class="flex justify-center">
         <!-- Logo image -->
-        <img src="{% static 'mainpage/logo.png' %}" alt="Logo" class="logo">
+        <img src="{% static 'mainpage/favicon.jpg' %}" alt="Logo" class="logo2">
       </div>
       <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
 
@@ -73,4 +75,4 @@
     </div>
   </div>
 </body>
-</html>
+{% endblock %}
