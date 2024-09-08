@@ -1,3 +1,5 @@
+{% load static %}
+{% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -5,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Dashboard - Muetick</title>
 
-        <link href="cat_styles.css" rel="stylesheet">
+        <link href="{% static 'mainpage/cat_styles.css' %}" rel="stylesheet">
   
     </head>
 
@@ -14,7 +16,7 @@
         <!--this header is just for reference-->
         <header class="header">
             <div class="header-container">
-                <img src="path/to/your/logo.png" alt="Logo" class="logo">
+                <img src="{% static 'mainpage/logo.png' %}" alt="Logo" class="logo">
                 <nav>
                   <ul>
                     <li><a href="dashboard.html">Home</a></li>
@@ -29,7 +31,7 @@
 
         <div class="content">
             <div class="image">
-                <img src="Fish-Gallery.jpg" alt="Image 1">
+                <img src="{% static 'mainpage/Fish-Gallery.jpg' %}" alt="Image 1">
             </div>
             
             <div class="layout">
