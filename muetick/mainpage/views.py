@@ -108,6 +108,7 @@ def signup(request):
             return render(request,"mainpage/Sign_Up.html",context)
         else:
             new_customer=Customer.objects.create(
+                        cus_id=str(random.randint(10000,99999)),
                         name=name,
                         email=email,
                         phno=phno,
