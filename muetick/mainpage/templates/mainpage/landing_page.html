@@ -1,15 +1,38 @@
-{% extends "mainpage/base.html" %}
 {% load static %}
 {% load static tailwind_tags %}
 
-{% block title %}
-    MueTick
-{% endblock %}
-{% tailwind_css %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        MueTick
+    </title>
+    <link href="{% static 'mainpage/styles.css' %}" rel="stylesheet">
+    <link rel="icon" href="{% static 'mainpage/favicon.jpg' %}">
+    {% tailwind_css %}
+</head>
+<body>
+   <!--<div class="container">
+      <header class="header">
+        <div class="header-container">
+            <img src="{% static 'mainpage/favicon.jpg' %}" alt="Logo" class="logo" onclick="location.href='/';">
+            <nav>
+              <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="/profile">Profile</a></li>
+              </ul>
+            </nav>
+        </div>
+    </header>
+  </div> -->
+  <div class="container">
 
-{% block content %}
     <section class="py-2 px-4 mx-auto animate-fade-right bg-[#1f2139]">
-        <div class="container flex flex-wrap items-center justify-center mt-10 md:px-12 md:flex-row h-[90vh] py-5 max-w-[1240px] px-4 mx-auto animate-fade-right bg-[#1f2139]">
+        <div class="container flex flex-wrap items-center justify-center mt-10 md:px-12 md:flex-row h-[95vh] py-5 max-w-[1240px] px-4 mx-auto animate-fade-right bg-[#1f2139]">
             <div class="mb-14 lg:mb-0 lg:w-1/2">
                 <h1 class="whitespace-nowrap max-w-xl text-[2.9rem] leading-none font-extrabold font-raleway text-center text-[#d3a040] lg:text-6xl lg:text-left lg:leading-tight mb-5">
                     MueTick
@@ -96,4 +119,6 @@
             </div>
         </div>
     </section>
-{% endblock %}
+  </div>
+</body>
+</html>

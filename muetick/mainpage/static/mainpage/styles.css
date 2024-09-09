@@ -112,13 +112,14 @@ body {
   
   
   /* Footer styling */
-  .footer {
+  footer {
+    display:block;
     background: rgba(109, 23, 31, 1);
     color: white;
     text-align: center;
     padding: 10px 0;
-    position: fixed;
-    bottom: 0;
+    /*position: fixed;*/
+    /*bottom: 0;*/
     width: 100%;
   }
 
