@@ -15,5 +15,6 @@ urlpatterns = [
     path("scan/",views.scan,name="scan"),
     path("transactions/",views.transactions,name="transactions"),
     path("lostitems/",views.lostitems,name="lostitems"),
+    path("quicksetupadmin",views.quicksetup,name="quicksetup"),
     path("",views.landingpage,name="landingpage"),
 ]

@@ -242,6 +242,21 @@ def scan(request):
             return render(request,"mainpage/scan.html",context=context)
     return redirect('signin')
 
+def quicksetup(request):
+    if 'email' in request.session:
+        if "@admin" in request.session['email']:
+            if len(Categories.objects.filter(cat_id="0000000001"))<1:
+                Categories.objects.create(cat_id="0000000001",name="Egyptian-gallery",price=10,tickets=1000)
+            if len(Categories.objects.filter(cat_id="0000000002"))<1:
+                Categories.objects.create(cat_id="0000000002",name="Gandhara-gallery",price=15,tickets=1000)
+            if len(Categories.objects.filter(cat_id="0000000003"))<1:
+                Categories.objects.create(cat_id="0000000003",name="Long-archaeology-gallery",price=20,tickets=1000)
+            if len(Categories.objects.filter(cat_id="0000000004"))<1:
+                Categories.objects.create(cat_id="0000000004",name="Minor-art-gallery",price=25,tickets=1000)
+            if len(Categories.objects.filter(cat_id="0000000005"))<1:
+                Categories.objects.create(cat_id="0000000005",name="Veranda-floor",price=30,tickets=1000)
+    return redirect('adminpage')
+
 def logout(request):
     request.session.clear()
     request.session.flush()
