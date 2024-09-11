@@ -181,7 +181,10 @@ def adminpage(request):
             context['ticketssold']=len(Ticket.objects.filter(trxtime=datetime.datetime.today()))
             context['cashinflow']=sum([x.totalcost for x in Ticket.objects.filter(trxtime=datetime.datetime.today())])
             context['totalaccounts']=len(Customer.objects.all())
-            context['eg']=sum([x.count for x in Ticket.objects.filter(trxtime=datetime.datetime.today(),catname=Categories.objects.filter(cat_id="0000000001")[0])])
+            try:
+                context['eg']=sum([x.count for x in Ticket.objects.filter(trxtime=datetime.datetime.today(),catname=Categories.objects.filter(cat_id="0000000001")[0])])
+            except:
+                return redirect('quicksetupadmin')
             context['gg']=sum([x.count for x in Ticket.objects.filter(trxtime=datetime.datetime.today(),catname=Categories.objects.filter(cat_id="0000000002")[0])])
             context['lag']=sum([x.count for x in Ticket.objects.filter(trxtime=datetime.datetime.today(),catname=Categories.objects.filter(cat_id="0000000003")[0])])
             context['mag']=sum([x.count for x in Ticket.objects.filter(trxtime=datetime.datetime.today(),catname=Categories.objects.filter(cat_id="0000000004")[0])])
