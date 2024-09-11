@@ -3,13 +3,14 @@
 {% load static tailwind_tags %}
 
 {% block title %}
-    Sign Up
+    MueTick
 {% endblock %}
 {% tailwind_css %}
 
 {% block content %}
           <!--this header is just for reference-->
-
+          <br>
+          <marquee class="text-bold text-3xl"direction="right" scrollamount="10" loop="animate-infinite">We offer discouts of upto 25% on bulk orders!!</marquee>
         <main>
             <div class = "content">
 
@@ -22,9 +23,9 @@
                   </div>
             </div>
 
-            <div class="categories">
+            <div class="categories my-12">
               <div class="category1">
-                <a href="{% url 'catpage' 'eg1' %}">
+                <a href="{% url 'catpage' 'Egyptian-gallery' %}">
                   <img src="{% static 'mainpage/Egyptian_Gallery_View2.jpg' %}" alt="Category 1">
                   <p class="caption">Egyptian Gallery</p>
                 </a>
@@ -32,7 +33,7 @@
               </div>
           
               <div class="category1">
-                <a href="{% url 'catpage' 'gg1' %}">
+                <a href="{% url 'catpage' 'Gandhara-gallery' %}">
                   <img src="{% static 'mainpage/Gandhara_Gallery_View1.jpg' %}" alt="Category 2">
                   <p class="caption">Gandhara Gallery</p>
                 </a>
@@ -40,14 +41,14 @@
               </div>
 
               <div class="category1">
-                <a href="{% url 'catpage' 'lag1' %}">
+                <a href="{% url 'catpage' 'Long-archaeology-gallery' %}">
                   <img src="{% static 'mainpage/LongArchaeology_Gallery_View1.jpg' %}" alt="Category 3">
                   <p class="caption">Long Archaeology Gallery</p>
                 </a>
               </div>
 
               <div class="category1">
-                <a href="{% url 'catpage' 'mag1' %}">
+                <a href="{% url 'catpage' 'Minor-art-gallery' %}">
                   <img src="{% static 'mainpage/This-Minor_Art_GalleryView2.jpg' %}" alt="Category 3">
                   <p class="caption">This Minor Art Gallery</p>
                 </a>
@@ -55,7 +56,7 @@
               </div>
 
               <div class="category1">
-                <a href="{% url 'catpage' 'vf1' %}">
+                <a href="{% url 'catpage' 'Varanda-floor' %}">
                   <img src="{% static 'mainpage/Varanda_1st_floor.jpg' %}" alt="Category 3">
                   <p class="caption">Varanda 1st Floor</p> 
                 </a>

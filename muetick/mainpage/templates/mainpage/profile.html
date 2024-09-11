@@ -23,9 +23,9 @@
         <div class="w-2/12 min-h-full bg-gradient-to-b from-[#6d171f]/[0.69] to-[#6d171f] p-5">
             <h1 class="text-3xl font-bold text-center text-white mb-10">User Profile</h1>
             <nav class="flex flex-col gap-4">
-                <a href="#" class="text-lg text-white border-2 border-white border-opacity-25 rounded-lg py-2 px-4 hover:bg-white hover:bg-opacity-25 hover:border-opacity-100">Dashboard</a>
-                <a href="edit-profile.html" class="text-lg text-white border-2 border-white border-opacity-25 rounded-lg py-2 px-4 hover:bg-white hover:bg-opacity-25 hover:border-opacity-100">Edit Profile</a>
-                <a href="#" class="text-lg text-white border-2 border-white border-opacity-25 rounded-lg py-2 px-4 hover:bg-white hover:bg-opacity-25 hover:border-opacity-100">Logout</a>
+                <a href="/home" class="text-lg text-white border-2 border-white border-opacity-25 rounded-lg py-2 px-4 hover:bg-white hover:bg-opacity-25 hover:border-opacity-100">Dashboard</a>
+                <a href="/editprofile" class="text-lg text-white border-2 border-white border-opacity-25 rounded-lg py-2 px-4 hover:bg-white hover:bg-opacity-25 hover:border-opacity-100">Edit Profile</a>
+                <a href="/logout" class="text-lg text-white border-2 border-white border-opacity-25 rounded-lg py-2 px-4 hover:bg-white hover:bg-opacity-25 hover:border-opacity-100">Logout</a>
             </nav>
         </div>
 
@@ -57,7 +57,7 @@
                             <th class="p-3">Date</th>
                             <th class="p-3">Amount</th>
                             <th class="p-3">Status</th>
-                            <th class="p-3">Actions</th>
+                            <!--<th class="p-3">Actions</th>-->
                         </tr>
                     </thead>
                     
@@ -66,65 +66,81 @@
                         <tr class="bg-[#6d171f]/[0.69] hover:bg-[#6d171f]/[0.8]">
                             <td class="p-3 text-center">{{x.tic_id}}</td>
                             <td class="p-3 text-center">{{x.catname.name}}</td>
-                            <td class="p-3 text-center">2024-09-01</td>
+                            <td class="p-3 text-center">{{x.trxtime}}</td>
                             <td class="p-3 text-center">{% widthratio x.count 1 x.catname.price %}</td>
-                            <td class="p-3 text-center">Completed</td>
+                            {% if not x.checked %}
+                            <td class="p-3 text-center">Not used</td>
+                            {% else %}
+                            <td class="p-3 text-center">Used up</td>
+                            {% endif %}
+                            <!--
                             <td class="p-3 text-center">
-                                <button onclick="downloadReceipt('TXN123456')" class="bg-white bg-opacity-25 text-slate-900 px-2 py-1 rounded-lg hover:bg-opacity-50 text-sm">Download Receipt</button>
+                                <button onclick="downloadReceipt({{x.tic_id}},{{x.trxtime}},{{x.totalcost}},{{x.checked}})" class="bg-white bg-opacity-25 text-slate-900 px-2 py-1 rounded-lg hover:bg-opacity-50 text-sm">Download Receipt</button>
                             </td>
+                            -->
                         </tr>
                         {% endfor %}
                         <!-- Add more rows as needed -->
                     </tbody>
                 </table>
 
-                <!-- Additional Sections -->
-                <h2 class="text-2xl font-bold mb-6">Upcoming Visits</h2>
-                <ul class="list-disc pl-5 mb-8 text-white">
-                    <li>Visit to The Louvre on 2024-09-01</li>
-                    <li>Tour of The British Museum on 2024-10-02</li>
-                </ul>
 
-                <h2 class="text-2xl font-bold mb-6">Favorite Museums</h2>
-                <ul class="list-disc pl-5 mb-8 text-white">
-                    <li>
-                        The Louvre
-                        <button onclick="toggleFavorite('The Louvre')" id="favorite-TheLouvre" class="ml-2 bg-white bg-opacity-25 text-slate-900 px-2 py-1 rounded-lg hover:bg-opacity-50 text-sm">
-                            Add to Favorites
-                        </button>
-                    </li>
-                    &nbsp;
-                    <li>
-                        The British Museum
-                        <button onclick="toggleFavorite('The British Museum')" id="favorite-BritishMuseum" class="ml-2 bg-white bg-opacity-25 text-slate-900 px-2 py-1 rounded-lg hover:bg-opacity-50 text-sm">
-                            Add to Favorites
-                        </button>
-                    </li>
-                    &nbsp;
-                    <li>
-                        The Metropolitan Museum of Art
-                        <button onclick="toggleFavorite('The Metropolitan Museum of Art')" id="favorite-MetropolitanMuseum" class="ml-2 bg-white bg-opacity-25 text-slate-900 px-2 py-1 rounded-lg hover:bg-opacity-50 text-sm">
-                            Add to Favorites
-                        </button>
-                    </li>
-                </ul>
+                <h2 class="text-2xl font-bold mb-6">Lost item submissions</h2>
+                <div id="feedback-list" class="bg-[#1f2139] p-4 rounded-lg text-white mb-8">
+                    {% for x in lostandfound %}
+                    <p><strong>Item lost in {{x.museum.name}}:</strong> {{x.desc}}</p>
+                    {% endfor %}
+                </div>
 
+                <!-- Lost and found -->
+                <h2 class="text-2xl font-bold mb-6">Submit Item report</h2>
+                <form id="feedback-form" class="bg-[#1f2139] p-6 rounded-lg shadow-lg"  action="#" method="POST">
+                    {% csrf_token %}
+                    <input name="typeofform" hidden value="l"></input>
+                    <div class="mb-4">
+                        <label for="museum" class="block text-white text-lg mb-2">Museum:</label>
+                        <select required id="museum" name="museum_lnf" class="w-full p-2 border-2 border-white rounded-lg text-black">
+                            <option value="Egyptian-gallery">Egyptian-gallery</option>
+                            <option value="Gandhara-gallery">Gandhara-gallery</option>
+                            <option value="Long-archaeology-gallery">Long-archaeology-gallery</option>
+                            <option value="Minor-art-gallery">Minor-art-gallery</option>
+                            <option value="Varanda-floor">Varanda-floor</option>
+                        </select>
+                        <!--<input type="text" id="museum" name="museum" class="w-full p-2 border-2 border-white rounded-lg text-black" placeholder="Museum Name" required>-->
+                    </div>
+                    <div class="mb-4">
+                        <label for="feedback" class="block text-white text-lg mb-2">Item description:</label>
+                        <textarea id="feedback" name="desc_lnf" rows="4" class="w-full p-2 border-2 border-white rounded-lg text-black" placeholder="Item Description" required></textarea>
+                    </div>
+                    <div class="mb-6">
+                        <button type="submit" class="bg-[#6d171f] text-white p-2 rounded-lg hover:bg-[#6d171f]/[0.9]">Submit item report</button>
+                    </div>
+                </form>
                 <h2 class="text-2xl font-bold mb-6">Recent Feedback</h2>
                 <div id="feedback-list" class="bg-[#1f2139] p-4 rounded-lg text-white mb-8">
-                    <p><strong>Feedback for The Louvre:</strong> Great experience! The tour was very informative.</p>
-                    <p><strong>Feedback for The British Museum:</strong> The exhibits were fascinating, but the queue was too long.</p>
+                    {% for x in feedback %}
+                    <p><strong>Feedback for {{x.museum.name}}:</strong> {{x.desc}}</p>
+                    {% endfor %}
                 </div>
 
                 <!-- Feedback Form -->
                 <h2 class="text-2xl font-bold mb-6">Write Feedback</h2>
-                <form id="feedback-form" class="bg-[#1f2139] p-6 rounded-lg shadow-lg">
+                <form id="feedback-form" class="bg-[#1f2139] p-6 rounded-lg shadow-lg" action="#" method="POST">
+                    {% csrf_token %}
                     <div class="mb-4">
+                        <input name="typeofform" hidden value="f"></input>
                         <label for="museum" class="block text-white text-lg mb-2">Museum:</label>
-                        <input type="text" id="museum" name="museum" class="w-full p-2 border-2 border-white rounded-lg text-black" placeholder="Museum Name" required>
+                        <select required id="museum" name="museum_f" class="w-full p-2 border-2 border-white rounded-lg text-black">
+                            <option value="Egyptian-gallery">Egyptian-gallery</option>
+                            <option value="Gandhara-gallery">Gandhara-gallery</option>
+                            <option value="Long-archaeology-gallery">Long-archaeology-gallery</option>
+                            <option value="Minor-art-gallery">Minor-art-gallery</option>
+                            <option value="Varanda-floor">Varanda-floor</option>
+                        </select>
                     </div>
                     <div class="mb-4">
                         <label for="feedback" class="block text-white text-lg mb-2">Feedback:</label>
-                        <textarea id="feedback" name="feedback" rows="4" class="w-full p-2 border-2 border-white rounded-lg text-black" placeholder="Your feedback..." required></textarea>
+                        <textarea id="feedback" name="desc_f" rows="4" class="w-full p-2 border-2 border-white rounded-lg text-black" placeholder="Your feedback..." required></textarea>
                     </div>
                     <div class="mb-6">
                         <button type="submit" class="bg-[#6d171f] text-white p-2 rounded-lg hover:bg-[#6d171f]/[0.9]">Submit Feedback</button>
@@ -133,14 +149,14 @@
             </div>
         </div>
     </div>
-
-    <!-- <script>
-        function downloadReceipt(transactionId) {
+    <!--
+     <script>
+        function downloadReceipt(transactionId,date,cash,status) {
             const receiptContent = `
                 Transaction ID: ${transactionId}\n
-                Date: 2024-09-01\n
-                Amount: $100\n
-                Status: Completed\n
+                Date: ${date}\n
+                Amount: ${cash}\n
+                Status: ${status}\n
             `;
 
             const blob = new Blob([receiptContent], { type: 'text/plain' });
@@ -149,8 +165,8 @@
             link.download = `${transactionId}_receipt.txt`;
             link.click();
         }
-
-        function toggleFavorite(museumName) {
+        </script>
+          function toggleFavorite(museumName) {
             const button = document.getElementById(`favorite-${museumName.replace(/\s+/g, '')}`);
             if (button.innerText === 'Add to Favorites') {
                 button.innerText = 'Remove from Favorites';

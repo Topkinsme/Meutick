@@ -11,5 +11,9 @@ urlpatterns = [
     path("profile/",views.profile,name="profile"),
     path("signin/",views.signin,name="signin"),
     path("signup/",views.signup,name="signup"),
+    path("logout/",views.logout,name="logout"),
+    path("scan/",views.scan,name="scan"),
+    path("transactions/",views.transactions,name="transactions"),
+    path("lostitems/",views.lostitems,name="lostitems"),
     path("",views.landingpage,name="landingpage"),
 ]

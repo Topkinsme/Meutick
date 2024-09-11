@@ -21,14 +21,15 @@
     <div class="flex flex-col h-screen w-full bg-gradient-to-br from-[#d3a044]/[0.5] to-[#d3a040] p-5">
         <div class="max-w-4xl mx-auto bg-gradient-to-b from-[#1f2139]/[0.9] to-[#1f2139] p-6 rounded-xl shadow-lg">
             <h1 class="text-4xl text-white font-bold mb-6">Edit Profile</h1>
-            <form id="editProfileForm">
+            <form id="editProfileForm" method="POST" action="#">
+                {% csrf_token %}
                 <div class="mb-4">
                     <label for="name" class="block text-white text-lg mb-2">Name:</label>
                     <input type="text" id="name" name="name" class="w-full p-2 border-2 border-white rounded-lg text-black" value="">
                 </div>
                 <div class="mb-4">
-                    <label for="email" class="block text-white text-lg mb-2">Email:</label>
-                    <input type="email" id="email" name="email" class="w-full p-2 border-2 border-white rounded-lg text-black" value="">
+                    <label for="email" class="block text-white text-lg mb-2">Ph no:</label>
+                    <input type="text" id="phno" name="phno" class="w-full p-2 border-2 border-white rounded-lg text-black" value="">
                 </div>
                 <div class="mb-6">
                     <button type="submit" class="bg-[#6d171f] text-white p-2 rounded-lg hover:bg-[#6d171f]/[0.9]">Save Changes</button>

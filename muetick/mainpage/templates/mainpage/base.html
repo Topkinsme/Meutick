@@ -21,13 +21,13 @@
         <div class="header-container">
             <img src="{% static 'mainpage/favicon.jpg' %}" alt="Logo" class="logo" onclick="location.href='/';">
             <nav>
-              <ul>
-                <li><a href="/home">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="/profile">Profile</a></li>
+              <ul class="flex space-x-4">
+                  <li><a href="/home" class=" text-white text-lg hover:text-yellow-500 hover:font-bold  transition duration-300 ease-in-out">Home</a></li>
+                  <li><a href="#" class="text-white text-lg hover:text-yellow-500 hover:font-bold  transition duration-300 ease-in-out">About</a></li>
+                  <li><a href="#" class="text-white text-lg hover:text-yellow-500 hover:font-bold  transition duration-300 ease-in-out">Contact Us</a></li>
+                  <li><a href="/profile" class="text-white text-lg hover:text-yellow-500 hover:font-bold  transition duration-300 ease-in-out">{{name}}</a></li>
               </ul>
-            </nav>
+            </nav>
         </div>
     </header>
   </div> 

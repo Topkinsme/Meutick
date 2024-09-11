@@ -26,16 +26,28 @@
                 <br>
                 <br>
                 <div class="flex flex-col gap p-3 items-center justify-center h-full">
-                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-slate-900 p-3 rounded-xl text-xl">
-                        Statictics
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-slate-900 p-3 rounded-xl text-xl" onclick="location.href='/adminpage'">
+                        Statistics
                     </button>
                     <br>
-                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-slate-900 p-3 rounded-xl text-xl">
-                        Edit Categories
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-slate-900 p-3 rounded-xl text-xl" onclick="location.href='/transactions'">
+                        Ticket History
                     </button>
                     <br>
-                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-slate-900 p-3 rounded-xl text-xl">
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-slate-900 p-3 rounded-xl text-xl" onclick="location.href='/dev'">
                         Contact Dev
+                    </button>
+                    <br>
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-slate-900 p-3 rounded-xl text-xl" onclick="location.href='/scan'">
+                        Ticket Scanning
+                    </button>
+                    <br>
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-slate-900 p-3 rounded-xl text-xl" onclick="location.href='/lostitems'">
+                        Lost Items
+                    </button>
+                    <br>
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-slate-900 p-3 rounded-xl text-xl" onclick="location.href='/logout'">
+                        Logout
                     </button>
                 </div>
                 
@@ -44,36 +56,36 @@
         <div class="w-11/12 bg-gradient-to-br from-[#d3a044]/[0.5] to-[#d3a040] p-5 flex h-full justify-center items-center">
             <div class="grid grid-rows-3 border-4 border-[#1f2139]/[0.9] bg-[#1f2139] w-3/4 h-3/4 p-1 text-center text-">
                 <div class="col-start-1 col-span-4 border-4 rounded-xl m-1 bg-white bg-opacity-15 text-slate-300 p-3 flex flex-col justify-center items-center">
-                    <p class="text-1xl font-bold">Member Count</p>
-                    <p class="text-4xl font-bold">224</p>
+                    <p class="text-1xl font-bold">Ticket sets Sold</p>
+                    <p class="text-4xl font-bold">{{ticketssold}}</p>
                 </div>
                 <div class="col-start-5 col-span-4 border-4 rounded-xl m-1 bg-white bg-opacity-15 text-slate-300  p-3 flex flex-col justify-center items-center">
-                    <p class="text-1xl font-bold">Tickets Sold</p>
-                    <p class="text-4xl font-bold">342</p>
+                    <p class="text-1xl font-bold">Cash Inflow</p>
+                    <p class="text-4xl font-bold">{{cashinflow}}</p>
                 </div>
                 <div class="col-start-9 col-span-4 border-4 rounded-xl m-1 bg-white bg-opacity-15 text-slate-300  p-3 flex flex-col justify-center items-center">
                     <p class="text-1xl font-bold">Accounts Created</p>
-                    <p class="text-4xl font-bold">13</p>
+                    <p class="text-4xl font-bold">{{totalaccounts}}</p>
                 </div>
                 <div class="col-start-1 col-span-6 border-4 rounded-xl m-1 bg-white bg-opacity-15 text-slate-300 p-3 flex flex-col justify-center items-center">
-                    <p class="text-1xl font-bold">Main Building Count</p>
-                    <p class="text-4xl font-bold">220</p>
+                    <p class="text-1xl font-bold">Egyptian Gallery</p>
+                    <p class="text-4xl font-bold">{{eg}}</p>
                 </div>
                 <div class="col-start-7 col-span-6 border-4 rounded-xl m-1 bg-white bg-opacity-15 text-slate-300  p-3 flex flex-col justify-center items-center">
-                    <p class="text-1xl font-bold">Exhibit A Tickets</p>
-                    <p class="text-4xl font-bold">123</p>
+                    <p class="text-1xl font-bold">Gandhara Gallery</p>
+                    <p class="text-4xl font-bold">{{gg}}</p>
                 </div>
                 <div class="col-start-1 col-span-4 border-4 rounded-xl m-1 bg-white bg-opacity-15 text-slate-300 p-3 flex flex-col justify-center items-center">
-                    <p class="text-1xl font-bold">Exhibit B Tickets</p>
-                    <p class="text-4xl font-bold">13</p>
+                    <p class="text-1xl font-bold">Long Archaeology Gallery</p>
+                    <p class="text-4xl font-bold">{{lag}}</p>
                 </div>
                 <div class="col-start-5 col-span-4 border-4 rounded-xl m-1 bg-white bg-opacity-15 text-slate-300  p-3 flex flex-col justify-center items-center">
-                    <p class="text-1xl font-bold">Exhibit C Tickets</p>
-                    <p class="text-4xl font-bold">80</p>
+                    <p class="text-1xl font-bold">This Minor Art Gallery</p>
+                    <p class="text-4xl font-bold">{{mag}}</p>
                 </div>
                 <div class="col-start-9 col-span-4 border-4 rounded-xl m-1 bg-white bg-opacity-15 text-slate-300  p-3 flex flex-col justify-center items-center">
-                    <p class="text-1xl font-bold">Profit</p>
-                    <p class="text-4xl font-bold">80$</p>
+                    <p class="text-1xl font-bold">Varanda 1st Floor</p>
+                    <p class="text-4xl font-bold">{{vf}}</p>
                 </div>
             </div>
         </div>

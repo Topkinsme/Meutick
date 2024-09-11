@@ -1,0 +1,84 @@
+{% extends "mainpage/base.html" %}
+{% load static %}
+{% load static tailwind_tags %}
+
+{% block title %}
+    Sign Up
+{% endblock %}
+{% tailwind_css %}
+
+{% block content %}
+    <style>
+        .raleway {
+            font-family: "Raleway", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+            }
+    </style>
+    {% tailwind_css %}
+</head>
+<body>
+    <div class="flex flex-row h-screen w-full raleway ">
+        <div class="w-2/12 min-h-full bg-gradient-to-b from-[#6d171f]/[0.69] to-[#6d171f] hover:w-4/12 z-2 text-center font-bold">
+            <div class="flex flex-col gap p-3 h-full">
+                <p class="text-3xl p-3  border-4 rounded-xl border-[#6d171f]/[0.9] italic ">ADMIN PAGE</p>
+                <br>
+                <br>
+                <div class="flex flex-col gap p-3 items-center justify-center h-full">
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-slate-900 p-3 rounded-xl text-xl" onclick="location.href='/adminpage'">
+                        Statistics
+                    </button>
+                    <br>
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-slate-900 p-3 rounded-xl text-xl" onclick="location.href='/transactions'">
+                        Ticket History
+                    </button>
+                    <br>
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-slate-900 p-3 rounded-xl text-xl" onclick="location.href='/dev'">
+                        Contact Dev
+                    </button>
+                    <br>
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-slate-900 p-3 rounded-xl text-xl" onclick="location.href='/scan'">
+                        Ticket Scanning
+                    </button>
+                    <br>
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-slate-900 p-3 rounded-xl text-xl" onclick="location.href='/lostitems'">
+                        Lost Items
+                    </button>
+                    <br>
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-slate-900 p-3 rounded-xl text-xl" onclick="location.href='/logout'">
+                        Logout
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+        <div class="flex justify-center p-10 w-full">
+            <div class="bg-gradient-to-b from-[#1f2139]/[0.9] to-[#1f2139] text-white p-8 rounded-lg shadow-lg w-full max-w-screen-xl mx-auto">
+                <h2 class="text-2xl font-bold mb-6">Ticket History</h2>
+                <table class="w-full bg-gradient-to-b from-[#6d171f]/[0.69] to-[#6d171f] rounded-lg overflow-hidden mb-8">
+                    <thead class="bg-[#6d171f]/[0.9] text-white">
+                        <tr>
+                            <th class="p-3">ID</th>
+                            <th class="p-3">Customer </th>
+                            <th class="p-3">Museum Name</th>
+                            <th class="p-3">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-white">
+                        {% for x in litems %}
+                        <tr class="bg-[#6d171f]/[0.69] hover:bg-[#6d171f]/[0.8]">
+                            <td class="p-3 text-center">{{x.lnf_id}}</td>
+                            <td class="p-3 text-center">{{x.cus.name}}</td>
+                            <td class="p-3 text-center">{{x.museum.name}}</td>
+                            <td class="p-3 text-center">{{x.desc}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+{% endblock %}
