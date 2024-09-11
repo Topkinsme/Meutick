@@ -184,7 +184,7 @@ def adminpage(request):
             try:
                 context['eg']=sum([x.count for x in Ticket.objects.filter(trxtime=datetime.datetime.today(),catname=Categories.objects.filter(cat_id="0000000001")[0])])
             except:
-                return redirect('quicksetupadmin')
+                return redirect('quicksetup')
             context['gg']=sum([x.count for x in Ticket.objects.filter(trxtime=datetime.datetime.today(),catname=Categories.objects.filter(cat_id="0000000002")[0])])
             context['lag']=sum([x.count for x in Ticket.objects.filter(trxtime=datetime.datetime.today(),catname=Categories.objects.filter(cat_id="0000000003")[0])])
             context['mag']=sum([x.count for x in Ticket.objects.filter(trxtime=datetime.datetime.today(),catname=Categories.objects.filter(cat_id="0000000004")[0])])
