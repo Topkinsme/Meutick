@@ -20,8 +20,9 @@ def catpage(request,mname):
     #lag1 - 20 - Long-archaeology-gallery
     #mag1 - 25 - Minor-art-gallery
     #vf1 - 30 - Varanda-floor
+    context={}
     imgpic={'Egyptian-gallery':'mainpage/Egyptian_Gallery_View2.jpg','Gandhara-gallery':'mainpage/Gandhara_Gallery_View1.jpg','Long-archaeology-gallery':'mainpage/LongArchaeology_Gallery_View1.jpg','Minor-art-gallery':'mainpage/This-Minor_Art_GalleryView2.jpg','Varanda-floor':'mainpage/Varanda_1st_floor.jpg'}
-    layoutpic={'Egyptian-gallery':'mainpage/Egyptian_Gallery_View2.jpg','Gandhara-gallery':'mainpage/Gandhara_Gallery_View1.jpg','Long-archaeology-gallery':'mainpage/LongArchaeology_Gallery_View1.jpg','Minor-art-gallery':'mainpage/This-Minor_Art_GalleryView2.jpg','Varanda-floor':'mainpage/Varanda_1st_floor.jpg'}
+    layoutpic={'Egyptian-gallery':'mainpage/Haven_minimap.png','Gandhara-gallery':'mainpage/Ascent_minimap.png','Long-archaeology-gallery':'mainpage/Split_minimap.png','Minor-art-gallery':'mainpage/Lotus_minimap.png','Varanda-floor':'mainpage/Sunset_minimap.png'}
     if 'email' in request.session:
         if request.method=="POST":
             try:
@@ -31,28 +32,35 @@ def catpage(request,mname):
                 print(e)
                 return redirect('dashboard')
             museum=Categories.objects.filter(name=mname)[0]
-            museum.tickets-=tickets
-            museum.save()
-            discount=0
-            if tickets>100:
-                discount=0.1*(tickets)
-            discount=min(25,discount)
-            new_ticket=Ticket.objects.create(
-                            tic_id="".join([str(random.randint(1,9)) for x in range(10)]),
-                            cusname=Customer.objects.filter(email=request.session['email'])[0],
-                            catname=museum,
-                            totalcost=int(tickets*museum.price*(1-(discount/100))),
-                            trxtime=datetime.datetime.today(),
-                            count=tickets,
-                        )
-            return redirect('profile')
-        else:
-            museum=Categories.objects.filter(name=mname)
-            if len(museum)<1:
-                    return redirect('dashboard')
+            if museum.tickets<tickets:
+                context['error']="We're sorry but we do not have that many tickets right now!"
             else:
-                context={'name':request.session['email'],'m_name':museum[0].name,'price':museum[0].price,'layout':layoutpic[museum[0].name],'imgbig':imgpic[museum[0].name]}
-                return render(request,"mainpage/catpage.html",context=context)
+                museum.tickets-=tickets
+                museum.save()
+                discount=0
+                if tickets>99:
+                    discount=0.1*(tickets)
+                discount=min(25,discount)
+                new_ticket=Ticket.objects.create(
+                                tic_id="".join([str(random.randint(1,9)) for x in range(10)]),
+                                cusname=Customer.objects.filter(email=request.session['email'])[0],
+                                catname=museum,
+                                totalcost=int(tickets*museum.price*(1-(discount/100))),
+                                trxtime=datetime.datetime.today(),
+                                count=tickets,
+                            )
+                return redirect('profile')
+        museum=Categories.objects.filter(name=mname)
+        if len(museum)<1:
+            return redirect('dashboard')
+
+        context['name']=request.session['email']
+        context['m_name']=museum[0].name
+        context['price']=museum[0].price
+        context['layout']=layoutpic[museum[0].name]
+        context['imgbig']=imgpic[museum[0].name]
+        context['avail']=museum[0].tickets
+        return render(request,"mainpage/catpage.html",context=context)
     return redirect('signin')
 
 
@@ -173,11 +181,16 @@ def adminpage(request):
             context['ticketssold']=len(Ticket.objects.filter(trxtime=datetime.datetime.today()))
             context['cashinflow']=sum([x.totalcost for x in Ticket.objects.filter(trxtime=datetime.datetime.today())])
             context['totalaccounts']=len(Customer.objects.all())
-            context['eg']=len(Ticket.objects.filter(trxtime=datetime.datetime.today(),catname=Categories.objects.filter(cat_id="0000000001")[0]))
-            context['gg']=len(Ticket.objects.filter(trxtime=datetime.datetime.today(),catname=Categories.objects.filter(cat_id="0000000002")[0]))
-            context['lag']=len(Ticket.objects.filter(trxtime=datetime.datetime.today(),catname=Categories.objects.filter(cat_id="0000000003")[0]))
-            context['mag']=len(Ticket.objects.filter(trxtime=datetime.datetime.today(),catname=Categories.objects.filter(cat_id="0000000004")[0]))
-            context['vf']=len(Ticket.objects.filter(trxtime=datetime.datetime.today(),catname=Categories.objects.filter(cat_id="0000000005")[0]))
+            context['eg']=sum([x.count for x in Ticket.objects.filter(trxtime=datetime.datetime.today(),catname=Categories.objects.filter(cat_id="0000000001")[0])])
+            context['gg']=sum([x.count for x in Ticket.objects.filter(trxtime=datetime.datetime.today(),catname=Categories.objects.filter(cat_id="0000000002")[0])])
+            context['lag']=sum([x.count for x in Ticket.objects.filter(trxtime=datetime.datetime.today(),catname=Categories.objects.filter(cat_id="0000000003")[0])])
+            context['mag']=sum([x.count for x in Ticket.objects.filter(trxtime=datetime.datetime.today(),catname=Categories.objects.filter(cat_id="0000000004")[0])])
+            context['vf']=sum([x.count for x in Ticket.objects.filter(trxtime=datetime.datetime.today(),catname=Categories.objects.filter(cat_id="0000000005")[0])])
+            context['egu']=(Categories.objects.filter(cat_id="0000000001")[0].tickets) + context['eg']
+            context['ggu']=(Categories.objects.filter(cat_id="0000000002")[0].tickets) + context['gg']
+            context['lagu']=(Categories.objects.filter(cat_id="0000000003")[0].tickets) + context['lag']
+            context['magu']=(Categories.objects.filter(cat_id="0000000004")[0].tickets) + context['mag']
+            context['vfu']=(Categories.objects.filter(cat_id="0000000005")[0].tickets) + context['vf']
             return render(request,"mainpage/adminpage.html",context=context)
     return redirect('signin')
 
@@ -224,6 +237,7 @@ def scan(request):
                         cat=ticket.catname
                         cat.tickets+=ticket.count
                         ticket.save()
+                        cat.save()
                         context['error']="Scanning successful!"
             return render(request,"mainpage/scan.html",context=context)
     return redirect('signin')

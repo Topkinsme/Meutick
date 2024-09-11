@@ -17,7 +17,7 @@
             </div>
             
             <div class="layout">
-              <img src="{% static layout %}" alt="Image 1">
+              <img class="h-40" src="{% static layout %}" alt="Image 1">
             </div>
         </div>
         
@@ -45,6 +45,15 @@
                 <button class="increase-btn" onclick="addcount()">+</button>
             </div>
         </div>
+        <div>
+          <div class="font-bold">
+            Available tickets- {{avail}}
+          </div>
+          <div class="font-bold text-red-500">
+            {{error}}
+          </div>
+        </div>
+        
 
         </div>
         <script>

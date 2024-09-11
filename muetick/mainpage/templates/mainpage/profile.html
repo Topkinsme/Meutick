@@ -67,7 +67,7 @@
                             <td class="p-3 text-center">{{x.tic_id}}</td>
                             <td class="p-3 text-center">{{x.catname.name}}</td>
                             <td class="p-3 text-center">{{x.trxtime}}</td>
-                            <td class="p-3 text-center">{% widthratio x.count 1 x.catname.price %}</td>
+                            <td class="p-3 text-center">{{x.totalcost }}</td>
                             {% if not x.checked %}
                             <td class="p-3 text-center">Not used</td>
                             {% else %}
