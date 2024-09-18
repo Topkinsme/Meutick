@@ -43,7 +43,11 @@
                     </button>
                     <br>
                     <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-slate-900 p-3 rounded-xl text-xl" onclick="location.href='/lostitems'">
-                        Lost Items
+                        Items
+                    </button>
+                    <br>
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-slate-900 p-3 rounded-xl text-xl" onclick="location.href='/feedback'">
+                        Feedback
                     </button>
                     <br>
                     <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-slate-900 p-3 rounded-xl text-xl" onclick="location.href='/logout'">
@@ -53,8 +57,8 @@
                 
             </div>
         </div>
-        <div class="flex justify-center p-10 w-full">
-            <div class="bg-gradient-to-b from-[#1f2139]/[0.9] to-[#1f2139] text-white p-8 rounded-lg shadow-lg w-full max-w-screen-xl mx-auto">
+        <div class="flex p-10 w-full flex-col">
+            <div class="bg-gradient-to-b from-[#1f2139]/[0.9] to-[#1f2139] text-white p-8 rounded-lg shadow-lg w-full max-w-screen-xl mx-auto h-full">
                 <h2 class="text-2xl font-bold mb-6">Ticket History</h2>
                 <table class="w-full bg-gradient-to-b from-[#6d171f]/[0.69] to-[#6d171f] rounded-lg overflow-hidden mb-8">
                     <thead class="bg-[#6d171f]/[0.9] text-white">
@@ -81,6 +85,35 @@
                             <td class="p-3 text-center">Used</td>
                             {% endif %}
                             
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="bg-gradient-to-b from-[#1f2139]/[0.9] to-[#1f2139] text-white p-8 rounded-lg shadow-lg w-full max-w-screen-xl mx-auto h-full">
+                <h2 class="text-2xl font-bold mb-6">Ticket History- Telegram</h2>
+                <table class="w-full bg-gradient-to-b from-[#6d171f]/[0.69] to-[#6d171f] rounded-lg overflow-hidden mb-8">
+                    <thead class="bg-[#6d171f]/[0.9] text-white">
+                        <tr>
+                            <th class="p-3">User ID</th>
+                            <th class="p-3">First Name</th>
+                            <th class="p-3">Place</th>
+                            <th class="p-3">Quantity</th>
+                            <th class="p-3">Cost</th>
+                            <th class="p-3">Total Cost</th>
+                            <th class="p-3">Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-white">
+                        {% for x in tele_trxns %}
+                        <tr class="bg-[#6d171f]/[0.69] hover:bg-[#6d171f]/[0.8]">
+                            <td class="p-3 text-center">{{x.user_id}}</td>
+                            <td class="p-3 text-center">{{x.first_name}}</td>
+                            <td class="p-3 text-center">{{x.place}}</td>
+                            <td class="p-3 text-center">{{x.quantity}}</td>
+                            <td class="p-3 text-center">{{x.ticket_cost}}</td>
+                            <td class="p-3 text-center">{{x.total_cost}}</td>
+                            <td class="p-3 text-center">{{x.timestamp}}</td>                            
                         </tr>
                         {% endfor %}
                     </tbody>

@@ -16,6 +16,7 @@
             font-style: normal;
             }
     </style>
+    {% tailwind_css %}
 </head>
 <body>
     <div class="flex flex-row h-screen w-full raleway ">
@@ -56,43 +57,55 @@
                 
             </div>
         </div>
-        <div class="w-11/12 bg-gradient-to-br from-[#d3a044]/[0.5] to-[#d3a040] p-5 flex h-full justify-center items-center">
-            <div class="grid grid-rows-3 border-4 border-[#1f2139]/[0.9] bg-gradient-to-b from-[#1f2139]/[0.9] to-[#1f2139] w-3/4 h-3/4 p-1 text-center">
-                <div class="flex justify-center items-center col-start-1 col-span-1">
-                    <p class="border-4 border-white border-opacity-10 rounded-xl  text-2xl text-white m-1 hover:border-opacity-100  p-4">
-                        Contact Number:
-                    </p>
-                </div>
-                <div class="flex justify-center items-center col-start-4 col-span-5">
-                <p class="border-4 border-white border-opacity-10 rounded-xl  text-3xl text-white m-1 hover:border-opacity-100 p-4">
-                    9875672631
-                </p></div>
-                <div class="flex justify-center items-center col-start-1 col-span-1">
-                <p class="border-4 border-white border-opacity-10 rounded-xl  text-2xl text-white m-1 hover:border-opacity-100 p-4">
-                    E-Mail:
-                </p></div>
-                <div class="flex justify-center items-center col-start-4 col-span-5">
-                <p class="border-4 border-white border-opacity-10 rounded-xl  text-3xl text-white m-1 hover:border-opacity-100 p-4">
-                    meutick_not_found@gmail.com
-                </p></div>
-                <div class="flex justify-center items-center col-start-1 col-span-1">
-                <p class="border-4 border-white border-opacity-10 rounded-xl  text-2xl text-white m-1 hover:border-opacity-100 p-4">
-                    Instagram:
-                </p></div>
-                <div class="flex justify-center items-center col-start-4 col-span-5">
-                <p class="border-4 border-white border-opacity-10 rounded-xl  text-3xl text-white m-1 hover:border-opacity-100 p-4">
-                    Meutick_frfr
-                </p></div>
-                <div class="flex justify-center items-center col-start-1 col-span-1">
-                <p class="border-4 border-white border-opacity-10 rounded-xl  text-2xl text-white m-1 hover:border-opacity-100 p-4">
-                    Linked-In:
-                </p></div>
-                <div class="flex justify-center items-center col-start-4 col-span-5">
-                <p class="border-4 border-white border-opacity-10 rounded-xl  text-3xl text-white m-1 hover:border-opacity-100 p-4">
-                    am_I_meutick
-                </p></div>
+        <div class="flex p-10 w-full flex-col">
+            <div class="bg-gradient-to-b from-[#1f2139]/[0.9] to-[#1f2139] text-white p-8 rounded-lg shadow-lg w-full max-w-screen-xl mx-auto">
+                <h2 class="text-2xl font-bold mb-6">Feedback</h2>
+                <table class="w-full bg-gradient-to-b from-[#6d171f]/[0.69] to-[#6d171f] rounded-lg overflow-hidden mb-8">
+                    <thead class="bg-[#6d171f]/[0.9] text-white">
+                        <tr>
+                            <th class="p-3">ID</th>
+                            <th class="p-3">Customer </th>
+                            <th class="p-3">Museum Name</th>
+                            <th class="p-3">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-white">
+                        {% for x in feedback %}
+                        <tr class="bg-[#6d171f]/[0.69] hover:bg-[#6d171f]/[0.8]">
+                            <td class="p-3 text-center">{{x.f_id}}</td>
+                            <td class="p-3 text-center">{{x.cus.name}}</td>
+                            <td class="p-3 text-center">{{x.museum.name}}</td>
+                            <td class="p-3 text-center">{{x.desc}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="bg-gradient-to-b from-[#1f2139]/[0.9] to-[#1f2139] text-white p-8 rounded-lg shadow-lg w-full max-w-screen-xl mx-auto">
+                <h2 class="text-2xl font-bold mb-6">Feedback - Telegram</h2>
+                <table class="w-full bg-gradient-to-b from-[#6d171f]/[0.69] to-[#6d171f] rounded-lg overflow-hidden mb-8">
+                    <thead class="bg-[#6d171f]/[0.9] text-white">
+                        <tr>
+                            <th class="p-3">ID</th>
+                            <th class="p-3">Customer </th>
+                            <th class="p-3">Description</th>
+                            <th class="p-3">Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-white">
+                        {% for x in tele_feedback %}
+                        <tr class="bg-[#6d171f]/[0.69] hover:bg-[#6d171f]/[0.8]">
+                            <td class="p-3 text-center">{{x.user_id}}</td>
+                            <td class="p-3 text-center">{{x.first_name}}</td>
+                            <td class="p-3 text-center">{{x.feedback}}</td>
+                            <td class="p-3 text-center">{{x.timestamp}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
+
 </body>
 {% endblock %}

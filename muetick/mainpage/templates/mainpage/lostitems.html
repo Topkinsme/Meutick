@@ -43,7 +43,11 @@
                     </button>
                     <br>
                     <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-slate-900 p-3 rounded-xl text-xl" onclick="location.href='/lostitems'">
-                        Lost Items
+                        Items
+                    </button>
+                    <br>
+                    <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-slate-900 p-3 rounded-xl text-xl" onclick="location.href='/feedback'">
+                        Feedback
                     </button>
                     <br>
                     <button class="border-4 border-[#6d171f]/[0.9] bg-white bg-opacity-25 text-slate-900 p-3 rounded-xl text-xl" onclick="location.href='/logout'">
@@ -53,9 +57,9 @@
                 
             </div>
         </div>
-        <div class="flex justify-center p-10 w-full">
+        <div class="flex p-10 w-full flex-col">
             <div class="bg-gradient-to-b from-[#1f2139]/[0.9] to-[#1f2139] text-white p-8 rounded-lg shadow-lg w-full max-w-screen-xl mx-auto">
-                <h2 class="text-2xl font-bold mb-6">Ticket History</h2>
+                <h2 class="text-2xl font-bold mb-6">Lost and found item reports</h2>
                 <table class="w-full bg-gradient-to-b from-[#6d171f]/[0.69] to-[#6d171f] rounded-lg overflow-hidden mb-8">
                     <thead class="bg-[#6d171f]/[0.9] text-white">
                         <tr>
@@ -72,6 +76,52 @@
                             <td class="p-3 text-center">{{x.cus.name}}</td>
                             <td class="p-3 text-center">{{x.museum.name}}</td>
                             <td class="p-3 text-center">{{x.desc}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="bg-gradient-to-b from-[#1f2139]/[0.9] to-[#1f2139] text-white p-8 rounded-lg shadow-lg w-full max-w-screen-xl mx-auto">
+                <h2 class="text-2xl font-bold mb-6">Lost items - Telegram</h2>
+                <table class="w-full bg-gradient-to-b from-[#6d171f]/[0.69] to-[#6d171f] rounded-lg overflow-hidden mb-8">
+                    <thead class="bg-[#6d171f]/[0.9] text-white">
+                        <tr>
+                            <th class="p-3">ID</th>
+                            <th class="p-3">Customer </th>
+                            <th class="p-3">Description</th>
+                            <th class="p-3">Time Stamp</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-white">
+                        {% for x in tele_litems %}
+                        <tr class="bg-[#6d171f]/[0.69] hover:bg-[#6d171f]/[0.8]">
+                            <td class="p-3 text-center">{{x.user_id}}</td>
+                            <td class="p-3 text-center">{{x.first_name}}</td>
+                            <td class="p-3 text-center">{{x.description}}</td>
+                            <td class="p-3 text-center">{{x.timestamp}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="bg-gradient-to-b from-[#1f2139]/[0.9] to-[#1f2139] text-white p-8 rounded-lg shadow-lg w-full max-w-screen-xl mx-auto">
+                <h2 class="text-2xl font-bold mb-6">Found items - Telegram</h2>
+                <table class="w-full bg-gradient-to-b from-[#6d171f]/[0.69] to-[#6d171f] rounded-lg overflow-hidden mb-8">
+                    <thead class="bg-[#6d171f]/[0.9] text-white">
+                        <tr>
+                            <th class="p-3">ID</th>
+                            <th class="p-3">Customer </th>
+                            <th class="p-3">Description</th>
+                            <th class="p-3">Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-white">
+                        {% for x in tele_fitems %}
+                        <tr class="bg-[#6d171f]/[0.69] hover:bg-[#6d171f]/[0.8]">
+                            <td class="p-3 text-center">{{x.user_id}}</td>
+                            <td class="p-3 text-center">{{x.first_name}}</td>
+                            <td class="p-3 text-center">{{x.report_item_description}}</td>
+                            <td class="p-3 text-center">{{x.timestamp}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>

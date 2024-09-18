@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .models import Customer,AdminUser,Ticket,Categories,feedback,lostandfound
+from .models import Customer,AdminUser,Ticket,Categories,feedback,lostandfound,TicketInfo_telegram,LostAndFound_telegram,ReportFound_telegram,Feedback_telegram
 import random
 import datetime
 
@@ -210,6 +210,8 @@ def transactions(request):
             context={'name':request.session['email']}
             trxns=Ticket.objects.all()
             context['trxns']=trxns
+            tele_trxns=TicketInfo_telegram.objects.all()
+            context['tele_trxns']=tele_trxns
             return render(request,"mainpage/transactions.html",context=context)
     return redirect('signin')
 
@@ -219,7 +221,22 @@ def lostitems(request):
             context={'name':request.session['email']}
             litems=lostandfound.objects.all()
             context['litems']=litems
+            tele_litems=LostAndFound_telegram.objects.all()
+            context['tele_litems']=tele_litems
+            tele_fitems=ReportFound_telegram.objects.all()
+            context['tele_fitems']=tele_fitems
             return render(request,"mainpage/lostitems.html",context=context)
+    return redirect('signin')
+
+def feedback_page(request):
+    if 'email' in request.session:
+        if "@admin" in request.session['email']:
+            context={'name':request.session['email']}
+            feedback_entries=feedback.objects.all()
+            context['feedback']=feedback_entries
+            tele_feedback=Feedback_telegram.objects.all()
+            context['tele_feedback']=tele_feedback
+            return render(request,"mainpage/feedback.html",context=context)
     return redirect('signin')
 
 def scan(request):
